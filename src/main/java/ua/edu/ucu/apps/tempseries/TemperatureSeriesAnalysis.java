@@ -1,13 +1,13 @@
 package ua.edu.ucu.apps.tempseries;
 
 import lombok.Getter;
-import lombok.Setter;
+// import lombok.Setter;
 
 import java.util.Arrays;
 import java.util.InputMismatchException;
 
 @Getter
-@Setter
+// @Setter
 public class TemperatureSeriesAnalysis {
     private double[] series;
 
@@ -15,15 +15,12 @@ public class TemperatureSeriesAnalysis {
     public TemperatureSeriesAnalysis() {
         this.series = new double[0];
     }
+    public double[] getSeries() {
+        return Arrays.copyOf(this.series, this.series.length);
+    }
 
     public TemperatureSeriesAnalysis(double[] temperatureSeries) {
-        int min = -273;
-        for (int i=0; i<temperatureSeries.length; i++) {
-            if (temperatureSeries[i] <= min) {
-                throw new InputMismatchException();
-            }
-        }
-        this.series = temperatureSeries;
+        this.series = Arrays.copyOf(temperatureSeries, temperatureSeries.length);
     }
     // public double[] getSeries() {
     //     return this.series;
@@ -34,20 +31,20 @@ public class TemperatureSeriesAnalysis {
             throw new IllegalArgumentException ("exception");
         }
         double c = 0;
-        for (int i = 0; i<this.series.length; i++) {
+        for (int i = 0; i < this.series.length; i++) {
             c = c + this.series[i];
         }
-        return c/this.series.length;
+        return c / this.series.length;
     }
 
     public double deviation() {
         if (this.series.length == 0) {
             throw new IllegalArgumentException ("exception");
         }
-        double dev =0;
-        for (int i=0; i<this.series.length; i++) {
-            if (Math.abs(this.series[i]-this.average())>dev) {
-                dev = Math.abs(this.series[i]-this.average());
+        double dev = 0;
+        for (int i = 0; i < this.series.length; i++) {
+            if (Math.abs(this.series[i] - this.average()) > dev) {
+                dev = Math.abs(this.series[i] - this.average());
 
             }
         }
@@ -60,9 +57,9 @@ public class TemperatureSeriesAnalysis {
             throw new IllegalArgumentException ("exception");
         }
         double m = Double.MAX_VALUE;
-        for (int i=0; i<this.series.length; i++) {
-            if (this.series[i]<m) 
-                m=this.series[i];
+        for (int i = 0; i < this.series.length; i++) {
+            if (this.series[i ]< m) 
+                m = this.series[i];
 
             }
         return m;
@@ -73,9 +70,9 @@ public class TemperatureSeriesAnalysis {
             throw new IllegalArgumentException ("exception");
         }
         double m = Double.MIN_VALUE;
-        for (int i=0; i<this.series.length; i++) {
-            if (this.series[i]>m) 
-                m=this.series[i];
+        for (int i = 0; i < this.series.length; i++) {
+            if (this.series[i] > m) 
+                m = this.series[i];
 
             }
         return m;
@@ -86,11 +83,11 @@ public class TemperatureSeriesAnalysis {
             throw new IllegalArgumentException ("exception");
         }
         double abs = Double.MAX_VALUE;
-        for (int i=0; i<this.series.length; i++) {
-            if (Math.abs(this.series[i])<abs) {
+        for (int i = 0; i < this.series.length; i++) {
+            if (Math.abs(this.series[i] ) < abs) {
                 abs = this.series[i];
             }
-            if (Math.abs(this.series[i])==abs) {
+            if (Math.abs(this.series[i]) == abs) {
                 if (this.series[i] == Math.abs(this.series[i])){
                 abs = this.series[i];
             }
@@ -106,12 +103,12 @@ public class TemperatureSeriesAnalysis {
             throw new IllegalArgumentException ("exception");
         }
         double abs = Double.MAX_VALUE;
-        for (int i=0; i<this.series.length; i++) {
-            if (Math.abs(this.series[i]-tempValue)<Math.abs(abs-tempValue)) {
+        for (int i = 0; i<this.series.length; i++) {
+            if (Math.abs(this.series[i] - tempValue)<Math.abs(abs - tempValue)) {
                 abs = this.series[i];
             }
-            if (Math.abs(this.series[i]-tempValue)==Math.abs(abs-tempValue)) {
-                if (this.series[i]-tempValue == Math.abs(this.series[i]-tempValue)){
+            if (Math.abs(this.series[i] - tempValue) == Math.abs( abs -tempValue)) {
+                if (this.series[i] - tempValue == Math.abs(this.series[i] - tempValue)){
                 abs = this.series[i];
             }
             }
@@ -121,17 +118,17 @@ public class TemperatureSeriesAnalysis {
 
     public double[] findTempsLessThen(double tempValue) {
         int c = 0;
-        for(int i = 0; i<this.series.length; i++) {
-            if (this.series[i]<tempValue) {
+        for (int i = 0; i < this.series.length; i++) {
+            if (this.series[i] < tempValue) {
                 c = c + 1;
             }
         }
         double[] arr = new double[c];
-        int c1 = 0;
-        for(int i = 0; i<this.series.length; i++) {
-            if (this.series[i]<tempValue){
-                arr[c1] = this.series[i];
-                c1 = c1 + 1;
+        int cd = 0;
+        for(int i = 0; i < this.series.length; i++) {
+            if (this.series[i] < tempValue){
+                arr[cd] = this.series[i];
+                cd = cd + 1;
             }
         }
 
@@ -141,15 +138,15 @@ public class TemperatureSeriesAnalysis {
 
     public double[] findTempsGreaterThen(double tempValue) {
         int c = 0;
-        for(int i = 0; i<this.series.length; i++) {
-            if (this.series[i]>=tempValue) {
+        for(int i = 0; i < this.series.length; i++) {
+            if (this.series[i] >= tempValue) {
                 c = c + 1;
             }
         }
         double[] arr = new double[c];
         int c1 = 0;
-        for(int i = 0; i<this.series.length; i++) {
-            if (this.series[i]>=tempValue){
+        for(int i = 0; i < this.series.length; i++) {
+            if (this.series[i] >= tempValue){
                 arr[c1] = this.series[i];
                 c1 = c1 + 1;
             }
@@ -161,15 +158,15 @@ public class TemperatureSeriesAnalysis {
 
     public double[] findTempsInRange(double lowerBound, double upperBound) {
         int c = 0;
-        for(int i = 0; i<this.series.length; i++) {
-            if (this.series[i]>=lowerBound&&this.series[i]<upperBound) {
+        for(int i = 0; i < this.series.length; i++) {
+            if (this.series[i] >= lowerBound && this.series[i] < upperBound) {
                 c = c + 1;
             }
         }
         double[] arr = new double[c];
         int c1 = 0;
-        for(int i = 0; i<this.series.length; i++) {
-            if (this.series[i]>=lowerBound&&this.series[i]<upperBound){
+        for(int i = 0; i < this.series.length; i++) {
+            if (this.series[i] >= lowerBound && this.series[i] < upperBound){
                 arr[c1] = this.series[i];
                 c1 = c1 + 1;
             }
@@ -201,6 +198,12 @@ public class TemperatureSeriesAnalysis {
     }
 
     public int addTemps(double... temps) {
+        int min = -273;
+        for (int i = 0; i < temps.length; i++) {
+            if (temps[i] <= min) {
+                throw new InputMismatchException();
+            }
+        }
         int j = this.series.length;
         this.series = Arrays.copyOf(this.series, 2 * this.series.length);
         for (double i:temps) {
