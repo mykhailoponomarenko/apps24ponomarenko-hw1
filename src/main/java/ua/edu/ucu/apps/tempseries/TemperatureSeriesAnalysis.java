@@ -20,7 +20,8 @@ public class TemperatureSeriesAnalysis {
     }
 
     public TemperatureSeriesAnalysis(double[] temperatureSeries) {
-        this.series = Arrays.copyOf(temperatureSeries, temperatureSeries.length);
+        this.series = Arrays.copyOf(temperatureSeries,
+                temperatureSeries.length);
     }
     // public double[] getSeries() {
     // return this.series;
@@ -58,8 +59,9 @@ public class TemperatureSeriesAnalysis {
         }
         double m = Double.MAX_VALUE;
         for (int i = 0; i < this.series.length; i++) {
-            if (this.series[i] < m)
+            if (this.series[i] < m) {
                 m = this.series[i];
+            }
 
         }
         return m;
@@ -71,8 +73,9 @@ public class TemperatureSeriesAnalysis {
         }
         double m = Double.MIN_VALUE;
         for (int i = 0; i < this.series.length; i++) {
-            if (this.series[i] > m)
+            if (this.series[i] > m) {
                 m = this.series[i];
+            }
 
         }
         return m;
@@ -104,7 +107,8 @@ public class TemperatureSeriesAnalysis {
         }
         double abs = Double.MAX_VALUE;
         for (int i = 0; i < this.series.length; i++) {
-            if (Math.abs(this.series[i] - tempValue) < Math.abs(abs - tempValue)) {
+            if (Math.abs(this.series[i] - tempValue) < Math
+                    .abs(abs - tempValue)) {
                 abs = this.series[i];
             }
             if (Math.abs(this.series[i] - tempValue) == Math.abs(abs - tempValue)) {
@@ -143,11 +147,11 @@ public class TemperatureSeriesAnalysis {
             }
         }
         double[] arr = new double[c];
-        int c1 = 0;
+        int cd = 0;
         for (int i = 0; i < this.series.length; i++) {
             if (this.series[i] >= tempValue) {
-                arr[c1] = this.series[i];
-                c1 = c1 + 1;
+                arr[cd] = this.series[i];
+                cd = cd + 1;
             }
         }
 
@@ -195,7 +199,7 @@ public class TemperatureSeriesAnalysis {
     }
 
     public int addTemps(double... temps) {
-        int min = -273;
+        final int min = -273;
         for (int i = 0; i < temps.length; i++) {
             if (temps[i] <= min) {
                 throw new InputMismatchException();
