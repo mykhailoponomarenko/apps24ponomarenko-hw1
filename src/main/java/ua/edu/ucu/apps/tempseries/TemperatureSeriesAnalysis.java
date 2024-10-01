@@ -200,9 +200,9 @@ public class TemperatureSeriesAnalysis {
     }
 
     public int addTemps(double... temps) {
-        final int m = -273;
+        final int minimum = -273;
         for (int i = 0; i < temps.length; i++) {
-            if (temps[i] <= m) {
+            if (temps[i] <= minimum) {
                 throw new InputMismatchException();
             }
         }
