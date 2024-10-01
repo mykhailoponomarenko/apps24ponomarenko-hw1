@@ -11,17 +11,18 @@ import java.util.InputMismatchException;
 public class TemperatureSeriesAnalysis {
     private double[] series;
 
-    public double[] getSeries() {
-        return Arrays.copyOf(this.series, this.series.length);
-    }
-
+    
     public TemperatureSeriesAnalysis() {
         this.series = new double[0];
     }
-
+    
     public TemperatureSeriesAnalysis(double[] temperatureSeries) {
         this.series = Arrays.copyOf(temperatureSeries,
                 temperatureSeries.length);
+    }
+    
+    public double[] getSeries() {
+        return Arrays.copyOf(this.series, this.series.length);
     }
     // public double[] getSeries() {
     // return this.series;
@@ -111,8 +112,8 @@ public class TemperatureSeriesAnalysis {
                     .abs(abs - tempValue)) {
                 abs = this.series[i];
             }
-            if (Math.abs(this.series[i] - tempValue) == Math.abs(abs - tempValue)) {
-                if (this.series[i] - tempValue == Math.abs(this.series[i] - tempValue)) {
+    if (Math.abs(this.series[i] - tempValue) == Math.abs(abs - tempValue)) {
+    if (this.series[i] - tempValue == Math.abs(this.series[i] - tempValue)) {
                     abs = this.series[i];
                 }
             }
@@ -166,11 +167,11 @@ public class TemperatureSeriesAnalysis {
             }
         }
         double[] arr = new double[c];
-        int c1 = 0;
+        int cd = 0;
         for (int i = 0; i < this.series.length; i++) {
             if (this.series[i] >= lowerBound && this.series[i] < upperBound) {
-                arr[c1] = this.series[i];
-                c1 = c1 + 1;
+                arr[cd] = this.series[i];
+                cd = cd + 1;
             }
         }
 
@@ -199,9 +200,9 @@ public class TemperatureSeriesAnalysis {
     }
 
     public int addTemps(double... temps) {
-        final int min = -273;
+        final int m = -273;
         for (int i = 0; i < temps.length; i++) {
-            if (temps[i] <= min) {
+            if (temps[i] <= m) {
                 throw new InputMismatchException();
             }
         }
